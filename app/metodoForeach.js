@@ -1,7 +1,10 @@
 
 const elementoSectionLivrosContainer = document.getElementById("livros");
 
+
+
 function exibirLivrosTela(listaDeLivros){
+    elementoSectionLivrosContainer.innerHTML = "";
     listaDeLivros.forEach(livro  => {
         elementoSectionLivrosContainer.innerHTML += 
         `
