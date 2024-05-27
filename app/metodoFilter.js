@@ -1,13 +1,29 @@
-let btnFiltro = document.querySelectorAll(".btn");
+const botoes = document.querySelectorAll('.btn')
+botoes.forEach(btn => btn.addEventListener('click', filtrarLivros))
 
-btnFiltro.forEach(function(botao){botao.addEventListener("click", filtrarCategoriaLivros)});
+function filtrarLivros() {
+    const elementoBtn = document.getElementById(this.id)
+    const categoria = elementoBtn.value
+    let livrosFiltrados = categoria == 'disponivel' ? filtrarPorDisponibilidade() : FiltrarPorCategoria(categoria)
+    exibirOsLivrosNaTela(livrosFiltrados)
+    if (categoria == 'disponivel') {
+        const valorTotal = calcularValorTotalDeLivrosDisponiveis(livrosFiltrados)
+        exibirValorTotalDosLivrosDisponiveisNaTela(valorTotal)
+    }
+}
 
+function FiltrarPorCategoria(categoria) {
+    return livros.filter(livro => livro.categoria == categoria)
+}
 
-function filtrarCategoriaLivros(){
-     const elementoBtn = document.getElementById(this.id);
-     const categoria = elementoBtn.value;
+function filtrarPorDisponibilidade() {
+    return livros.filter(livro => livro.quantidade > 0)
+}
 
-    const livrosFiltrados = livros.filter(livro => livro.categoria == categoria);    
-
-    exibirLivrosTela(livrosFiltrados);
+function exibirValorTotalDosLivrosDisponiveisNaTela(valorTotal) {
+    elementoComValorTotalDeLivrosDisponiveis.innerHTML = `
+    <div class="livros__disponiveis">
+    <p>Todos os livros disponíveis por R$ <span id="valor">${valorTotal}</span></p>
+    </div>
+    `
 }

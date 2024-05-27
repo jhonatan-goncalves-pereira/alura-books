@@ -1,8 +1,7 @@
-let btnOrdenar = document.getElementById("btnOrdenarPorPreco");
+let btnOdenarPorPreco = document.getElementById('btnOrdenarPorPreco')
+btnOdenarPorPreco.addEventListener('click', ordenarLivrosPorPreco)
 
-btnOrdenar.addEventListener("click", ordenarPreco);
-
-function ordenarPreco(){
-    let livrosOrdenados = livros.sort((a,b)=>(a.preco-b.preco));
-    exibirLivrosTela(livrosOrdenados);
+function ordenarLivrosPorPreco() {
+    let lirvosOrdenados = livros.sort((a, b) => a.preco - b.preco)
+    exibirOsLivrosNaTela(lirvosOrdenados)
 }
